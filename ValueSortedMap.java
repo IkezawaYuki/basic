@@ -26,9 +26,12 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     }
     V old = remove(key);
     map.put(key, value);
-    
-
-
+    List<K> keys = reverseMap.get(value);
+    if (keys == null) {
+      keys = new ArrayList<K>();
+      reverseMap.put(value, keys);
+    }
+    keys.add(key);
     return old;
   }
 
@@ -44,9 +47,22 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     return value;
   }
 
-  public Iterator<K> iterator() {
+  public int size() {
+    return map.size();
+  }
 
-    return null;
+  public Iterator<K> iterator() {
+    return new Iterator<K>() {
+      Iterator<V> vi = reverseMap.keySet().iterator();
+      Iterator<K> ki = new ArrayList<K>().iterator();
+      public boolean hasNext() {
+        return false;
+      }
+      public K next() {
+        return null;
+      }
+      
+    };
   }
   
 }
