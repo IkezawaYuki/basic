@@ -1,3 +1,4 @@
+import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -56,13 +57,21 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
       Iterator<V> vi = reverseMap.keySet().iterator();
       Iterator<K> ki = new ArrayList<K>().iterator();
       public boolean hasNext() {
-        return false;
+        return vi.hasNext() || ki.hasNext();
       }
       public K next() {
-        return null;
+        if (hasNext()) {
+          if (!ki.hasNext()) {
+            ki = reverseMap.get(vi.next()).iterator();
+          }
+          return ki.next();
+        }
+        throw new NoSuchElementException();
       }
       
+      public void remove() {
+        throw new UnsupportedOperationException();
+      }
     };
   }
-  
 }
