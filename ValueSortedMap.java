@@ -36,6 +36,10 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     return old;
   }
 
+  public V get(K key) {
+    return map.get(key);
+  }
+
   public V remove(K key) {
     V value = map.remove(key);
     if (value != null) {
