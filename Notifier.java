@@ -12,6 +12,12 @@ public final class Notifier {
   private volatile boolean active = true;
   public static Notifier getInstance() { return INSTANCE; }
   public Notifier() {
-    
+
+  }
+
+  public void Register(String user, MobileDevice device) {
+    synchronized(lock) {
+      
+    }
   }
 }
