@@ -17,6 +17,18 @@ public final class Notifier {
 
   public void Register(String user, MobileDevice device) {
     synchronized(lock) {
+      List<MobileDevice> devices = userMobileDevices.get(user);
+      if (device == null) {
+        devices = new ArrayList<>();
+        userMobileDevices.put(user, devices);
+      }
+      devices.add(device);
+    }
+  }
+
+  public void send(String user, String message) {
+    List<MobileDevice> devices = new ArrayList<>();
+    synchronized(lock) {
       
     }
   }
