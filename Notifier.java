@@ -47,4 +47,23 @@ public final class Notifier {
       }
     }
   }
+
+  public void loopForMessage(MobileDevice device) {
+    while (active) {
+      List<String> messageList;
+      synchronized(lock) {
+        messageList = messagesToDeliver.remove(device);
+      }
+      if (messageList != null) {
+        device.getListener().onNotificationReceived(messageList);
+      }
+      synchronized(device) {
+        try {
+          device.wait(3000L);
+        } catch(InterruptedException e) {
+          break;
+        }
+      }
+    }
+  }
 }
