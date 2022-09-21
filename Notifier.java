@@ -15,7 +15,7 @@ public final class Notifier {
 
   }
 
-  public void Register(String user, MobileDevice device) {
+  public void register(String user, MobileDevice device) {
     synchronized(lock) {
       List<MobileDevice> devices = userMobileDevices.get(user);
       if (device == null) {
@@ -63,6 +63,25 @@ public final class Notifier {
         } catch(InterruptedException e) {
           break;
         }
+      }
+    }
+  }
+
+  public void shutdown() {
+    active = false;
+    List<MobileDevice> devices = new ArrayList<>();
+    synchronized(lock) {
+      messagesToDeliver.clear();
+      for (String user : userMobileDevices.keySet()) {
+        for (MobileDevice device : userMobileDevices.get(user)) {
+          devices.add(device);
+        }
+      }
+      userMobileDevices.clear();
+    }
+    for (MobileDevice device : devices) {
+      synchronized(device) {
+        device.notifyAll();
       }
     }
   }
