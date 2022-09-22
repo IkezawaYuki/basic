@@ -1,7 +1,11 @@
 public class Tester {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
     createUserMobileDevice("Taro", "phone");
-    
+    createUserMobileDevice("Taro", "tablet");
+    Notifier notifier = Notifier.getInstance();
+    notifier.send("Taro", "You have a message.");
+    Thread.sleep(500L);
+    notifier.shutdown();
   }
 
   private static void createUserMobileDevice(String user, String name) {
