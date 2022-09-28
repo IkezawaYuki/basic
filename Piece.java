@@ -18,8 +18,12 @@ public class Piece {
   public boolean tryStepForward() {
     Location nextLocation = new Location(location.x + direction.dx, location.y + direction.dy);
     if (maze.isBlank(nextLocation)) {
-      
+      location = nextLocation;
+      history.add(direction);
+      return true;
     }
     return false;
   }
+
+  public boolean isAtGoal(){ return maze.isGoal(location); }
 }
