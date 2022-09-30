@@ -26,4 +26,6 @@ public class Piece {
   }
 
   public boolean isAtGoal(){ return maze.isGoal(location); }
+
+  public List<Direction> getHistory() { return new ArrayList<>(history); }
 }

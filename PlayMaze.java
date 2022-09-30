@@ -11,7 +11,12 @@ public class PlayMaze {
                          "*******", 7);
     Piece piece = new Piece(maze);
     while (!piece.isAtGoal()) {
-      
+      piece.turnLeft();
+      while (!piece.tryStepForward()) {
+        piece.turnRight();
+      }
     }
+    List<Direction> history = piece.getHistory();
+    System.out.println(history);
   }
 }
