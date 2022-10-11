@@ -24,6 +24,6 @@ public class TemplateParser {
       }
     }
     fragmentList.add(new PassThrough(buf));
-    
+    return new Template(fragmentList);
   }
 }
