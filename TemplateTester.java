@@ -8,6 +8,7 @@ public class TemplateTester {
       Reader tReader = new FileReader("template.txt");
       Reader rReader = new FileReader("replacementTable.txt")
     ) {
+      Template template = TemplateParser.parse(tReader);
       
     } 
   }
