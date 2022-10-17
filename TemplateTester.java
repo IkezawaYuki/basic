@@ -13,7 +13,7 @@ public class TemplateTester {
     ) {
       Template template = TemplateParser.parse(tReader);
       Map<String, List<String>> table = ReplacementTableParser.parse(rReader);
-      System.out.println(table.apply(table));
+      System.out.println(template.apply(table));
     } 
   }
 }
