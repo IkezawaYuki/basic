@@ -16,5 +16,13 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     reverseMap = new TreeMap<V, List<K>>();
   }
 
-  
+  public V put(K key, V value) {
+    if (key == null || value == null) {
+      throw new NullPointerException();
+    }
+    V old = remove(key);
+    map.put(key, value);
+    List<K> keys = reverseMap.get(value);
+    
+  }
 }
