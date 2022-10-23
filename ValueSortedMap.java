@@ -23,6 +23,19 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     V old = remove(key);
     map.put(key, value);
     List<K> keys = reverseMap.get(value);
-    
+    if (keys == null) {
+      keys = new ArrayList<K>();
+      reverseMap.put(value, keys);
+    }
+    keys.add(key);
+    return old;
+  }
+
+  public V get(K key) {
+    return map.get(key);
+  }
+
+  public V remove(K key) {
+    V value = 
   }
 }
