@@ -36,6 +36,20 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
   }
 
   public V remove(K key) {
-    V value = 
+    V value = map.remove(key);
+    if (value != null) {
+      List<K> keys = reverseMap.get(value);
+      keys.remove(key);
+      if (keys.isEmpty()) {
+        reverseMap.remove(value);
+      }
+    }
+    return value;
   }
+
+  public int size() {
+    return map.size();
+  }
+
+  
 }
