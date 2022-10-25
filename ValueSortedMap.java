@@ -51,5 +51,10 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     return map.size();
   }
 
-  
+  public Iterable<K> iterable() {
+    return new Iterable<K>() {
+      Iterator<V> vi = reverseMap.keySet().iterator();
+      Iterator<K> ki = new ArrayList<K>().iterator();
+    };
+  }
 }
