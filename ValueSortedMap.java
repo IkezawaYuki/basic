@@ -55,6 +55,16 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
     return new Iterable<K>() {
       Iterator<V> vi = reverseMap.keySet().iterator();
       Iterator<K> ki = new ArrayList<K>().iterator();
+
+      public boolean hasNext() {
+        return vi.hasNext() || ki.hasNext();
+      }
+
+      public K next() {
+        if (hasNext()) {
+          
+        }
+      }
     };
   }
 }
