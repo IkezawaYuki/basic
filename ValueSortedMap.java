@@ -62,7 +62,9 @@ public class ValueSortedMap<K, V> implements Iterable<K> {
 
       public K next() {
         if (hasNext()) {
-          
+          if (!ki.hasNext()) {
+            
+          }
         }
       }
     };
